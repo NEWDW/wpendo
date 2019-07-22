@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import com.xl.wpendo.R
 
 class TimeLineAdapter(notes: List<String>) : RecyclerView.Adapter<TimeLineAdapter.ViewHolder>() {
@@ -20,6 +21,9 @@ class TimeLineAdapter(notes: List<String>) : RecyclerView.Adapter<TimeLineAdapte
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         val note = _notes[p1]
         p0.textView.text = note
+        p0.itemView.setOnClickListener {
+            Toast.makeText(it.context,"点击了$p1",Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getItemCount(): Int {

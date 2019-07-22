@@ -5,7 +5,13 @@ import com.xl.wpendo.R
 /**
  * 这个类估计不全
  */
-class Note(val time:String,val noteKind:NoteKind,val title:String,val detail:String) {
+class Note(
+    val time:String,
+    val noteKind:NoteKind,
+    val title:String,
+    val detail:String,
+    val picUrl: MutableList<String>?
+) {
     fun getBitmapFromNote(noteKind: NoteKind)=
             when(noteKind){
                 NoteKind.item_agenda-> R.drawable.ic_item_agenda

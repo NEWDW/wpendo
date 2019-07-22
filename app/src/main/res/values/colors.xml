@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="tintColor">#FAD7A0</color>
+    <color name="colorAll">#E5E7E9</color>
+    <color name="colorEssay">#85C1E9</color>
+    <color name="colorTodo">#82E0AA</color>
+    <color name="colorAgenda">#FADBD8</color>
+    <color name="colorDaily">#FCF3CF</color>
+
 </resources>
