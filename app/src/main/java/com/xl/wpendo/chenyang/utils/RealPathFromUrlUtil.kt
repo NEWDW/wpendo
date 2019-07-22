@@ -1,11 +1,9 @@
-package com.xl.wpendo.activities.chenyang.utils
+package com.xl.wpendo.chenyang.utils
 
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
-import android.support.v4.app.FragmentActivity
-import com.xl.wpendo.activities.chenyang.text.RichTextActivity
+import com.xl.wpendo.chenyang.text.RichTextActivity
 
 
 /**

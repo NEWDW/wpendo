@@ -16,7 +16,7 @@
             tools:ignore="HardcodedText,SpUsage"/>
 
 
-	<com.xl.wpendo.activities.chenyang.text.RichText
+	<com.xl.wpendo.chenyang.text.RichText
 			android:id="@+id/richText"
 			android:layout_width="match_parent"
 			android:layout_weight="8"

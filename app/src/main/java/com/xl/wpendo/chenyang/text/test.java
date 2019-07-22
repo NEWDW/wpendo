@@ -1,4 +1,4 @@
-package com.xl.wpendo.activities.chenyang.text;
+package com.xl.wpendo.chenyang.text;
 
 import android.content.Context;
 import android.graphics.Bitmap;

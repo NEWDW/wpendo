@@ -1,4 +1,4 @@
-package com.xl.wpendo.activities.chenyang.text
+package com.xl.wpendo.chenyang.text
 
 import android.animation.LayoutTransition
 import android.annotation.SuppressLint
@@ -6,9 +6,6 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.os.Parcel
-import android.os.Parcelable
-import android.transition.Transition
 import android.util.AttributeSet
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -17,7 +14,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.xl.wpendo.R
-import java.util.zip.Inflater
 
 /**
  *created by chenyang

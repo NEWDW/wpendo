@@ -1,4 +1,4 @@
-package com.xl.wpendo.activities.chenyang.myenums
+package com.xl.wpendo.chenyang.myenums
 
 /**
  *created by chenyang

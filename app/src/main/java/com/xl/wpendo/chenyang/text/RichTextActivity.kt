@@ -1,17 +1,13 @@
-package com.xl.wpendo.activities.chenyang.text
+package com.xl.wpendo.chenyang.text
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentUris
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.DocumentsContract
 import android.provider.MediaStore
@@ -19,17 +15,10 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.text.*
 import android.text.style.*
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import com.xl.wpendo.R
 import com.xl.wpendo.activities.BaseActivity
-import com.xl.wpendo.activities.chenyang.myenums.typeface
 import kotlinx.android.synthetic.main.activity_rich_text.*
-import java.io.Flushable
-import java.util.jar.Manifest
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class RichTextActivity :  BaseActivity(), View.OnClickListener {
