@@ -7,24 +7,32 @@
         android:orientation="vertical">
 
     <Button
-            android:id="@+id/btn_swich"
+            android:id="@+id/btn_openAlbum"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:text="点击切换格式"
+            android:text="点击打开相册"
             android:textSize="50dp"
             tools:ignore="HardcodedText,SpUsage"/>
+
+
+	<com.xl.wpendo.activities.chenyang.text.RichText
+			android:id="@+id/richText"
+			android:layout_width="match_parent"
+			android:layout_weight="8"
+			android:layout_height="0dp"
+			android:background="#888"/>
+
 
     <EditText
             android:id="@+id/et_test"
             android:layout_width="match_parent"
-            android:layout_weight="8"
+            android:layout_weight="1"
             android:layout_height="0dp"
             android:background="#5652"
-            android:textSize="50dp"
+            android:textSize="20dp"
             android:hint="这里是EditText"
-            tools:ignore="HardcodedText,SpUsage"
-    />
+            tools:ignore="HardcodedText,SpUsage"/>
 
     <LinearLayout
             android:layout_width="match_parent"
