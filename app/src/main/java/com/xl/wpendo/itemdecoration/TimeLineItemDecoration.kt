@@ -1,9 +1,10 @@
-package com.xl.wpendo
+package com.xl.wpendo.itemdecoration
 
 import android.content.Context
 import android.graphics.*
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.xl.wpendo.R
 import com.xl.wpendo.noteitems.Note
 
 class TimeLineItemDecoration(context: Context, notes: MutableList<Note>) : RecyclerView.ItemDecoration() {
@@ -61,16 +62,16 @@ class TimeLineItemDecoration(context: Context, notes: MutableList<Note>) : Recyc
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
         sortByTime()
-        val firstNote=_notes[0]
+        val firstNote = _notes[0]
         //遍历子view
         val childCount = parent.childCount
-        for (i in 0 until childCount-1) {
+        for (i in 0 until childCount - 1) {
             //对应的子view
             val child = parent.getChildAt(i)
             //对应在adapter的下标
             val index = parent.getChildAdapterPosition(child)
             //对应在数据中的内容
-            val note = _notes[index+1]
+            val note = _notes[index + 1]
             //判断在adapter中的序号奇偶
             when (index % 2) {
                 //交叉的方式排列
@@ -82,7 +83,10 @@ class TimeLineItemDecoration(context: Context, notes: MutableList<Note>) : Recyc
                     //第一个item在中心画图标，X中心坐标-图标一半,特殊处理
                     {
                         c.drawBitmap(
-                            BitmapFactory.decodeResource(_context.resources, note.getBitmapFromNote(firstNote.noteKind)),
+                            BitmapFactory.decodeResource(
+                                _context.resources,
+                                note.getBitmapFromNote(firstNote.noteKind)
+                            ),
                             middleX.toFloat() - icon.width / 2,
                             child.top.toFloat() - _itemViewtopinterval,
                             _paint1
@@ -126,7 +130,7 @@ class TimeLineItemDecoration(context: Context, notes: MutableList<Note>) : Recyc
                     c.drawLine(
                         middleX.toFloat() + icon.width / 2,
                         child.bottom.toFloat() + _itemViewtopinterval,
-                        middleX.toFloat() +icon.width / 2 + 25,
+                        middleX.toFloat() + icon.width / 2 + 25,
                         child.bottom.toFloat() + _itemViewtopinterval,
                         _paint3
                     )
@@ -139,7 +143,10 @@ class TimeLineItemDecoration(context: Context, notes: MutableList<Note>) : Recyc
                     if (i == 0 && index == 0) {
                         //特殊处理第一个item，这里包含图标和文字
                         c.drawBitmap(
-                            BitmapFactory.decodeResource(_context.resources, note.getBitmapFromNote(firstNote.noteKind)),
+                            BitmapFactory.decodeResource(
+                                _context.resources,
+                                note.getBitmapFromNote(firstNote.noteKind)
+                            ),
                             middleX.toFloat() - icon.width / 2,
                             child.top.toFloat() - _itemViewtopinterval,
                             _paint1
@@ -177,7 +184,7 @@ class TimeLineItemDecoration(context: Context, notes: MutableList<Note>) : Recyc
 
     }
 
-    private fun sortByTime(){
+    private fun sortByTime() {
         //这部分需要先转化成时间戳
         _notes.sortBy { it.time }
     }

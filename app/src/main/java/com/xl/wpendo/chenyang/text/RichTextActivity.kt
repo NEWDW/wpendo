@@ -18,6 +18,9 @@ import android.text.style.*
 import android.view.View
 import com.xl.wpendo.R
 import com.xl.wpendo.activities.BaseActivity
+import com.xl.wpendo.livedatabus.LiveDataBus
+import com.xl.wpendo.noteitems.Note
+import com.xl.wpendo.noteitems.NoteKind
 import kotlinx.android.synthetic.main.activity_rich_text.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -194,5 +197,14 @@ private inner class EdiWatcher : TextWatcher {
             coursor.close()
         }
         imagePath = path
+    }
+
+    /**
+     *用LiveDataBus返回从用户获取的note
+     * note你自己先建，这里也是个例子
+     */
+    private fun returnToUi(){
+        val note=Note("2019/7/20", NoteKind.item_essay, "please", "nothing",null)
+        LiveDataBus.get().with("new_note").value=note
     }
 }
