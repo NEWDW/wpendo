@@ -26,6 +26,7 @@ public final class LiveDataBus {
     private static class SingletonHolder {
         private static final LiveDataBus DEFAULT_BUS = new LiveDataBus();
     }
+
     public static LiveDataBus get() {
         return SingletonHolder.DEFAULT_BUS;
     }
