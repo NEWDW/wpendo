@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.xl.wpendo.R
 import com.xl.wpendo.noteitems.Note
+import org.w3c.dom.Node
 
 class TimeLineItemDecoration(context: Context, notes: MutableList<Note>) : RecyclerView.ItemDecoration() {
     private var _paint1: Paint //画竖线
@@ -62,130 +63,131 @@ class TimeLineItemDecoration(context: Context, notes: MutableList<Note>) : Recyc
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
         sortByTime()
-        val firstNote = _notes[0]
-        //遍历子view
-        val childCount = parent.childCount
-        for (i in 0 until childCount - 1) {
-            //对应的子view
-            val child = parent.getChildAt(i)
-            //对应在adapter的下标
-            val index = parent.getChildAdapterPosition(child)
-            //对应在数据中的内容
-            val note = _notes[index + 1]
-            //判断在adapter中的序号奇偶
-            when (index % 2) {
-                //交叉的方式排列
-                1 -> {
-                    //X中心坐标
-                    val middleX = child.left + child.width / 2 - _itemViewLeftinterval / 2
-                    //处理的是adapter中的第一个item
-                    if (index == 0)
-                    //第一个item在中心画图标，X中心坐标-图标一半,特殊处理
-                    {
-                        c.drawBitmap(
-                            BitmapFactory.decodeResource(
-                                _context.resources,
-                                note.getBitmapFromNote(firstNote.noteKind)
-                            ),
-                            middleX.toFloat() - icon.width / 2,
-                            child.top.toFloat() - _itemViewtopinterval,
-                            _paint1
-                        )
-                    }
-                    c.drawLine(
-                        middleX.toFloat() - icon.width / 2,
-                        child.bottom.toFloat() + _itemViewtopinterval,
-                        middleX.toFloat() - icon.width / 2 - 25,
-                        child.bottom.toFloat() + _itemViewtopinterval,
-                        _paint3
-                    )
-                    c.drawText(
-                        note.time,
-                        (middleX).toFloat() + icon.width / 2 + 25,
-                        child.bottom.toFloat() + _itemViewtopinterval / 2 + _itemViewtopinterval,
-                        _paint2
-                    )
-
-
-                    //画上链接线
-                    c.drawLine(
-                        middleX.toFloat(),
-                        child.top.toFloat() + _itemViewtopinterval,
-                        middleX.toFloat(),
-                        child.bottom.toFloat(),
-                        _paint1
-                    )
-                    //排除最后一次，画图
-                    if (i != childCount - 1) c.drawBitmap(
-                        BitmapFactory.decodeResource(_context.resources, note.getBitmapFromNote(note.noteKind)),
-                        middleX.toFloat() - icon.width / 2,
-                        child.bottom.toFloat(),
-                        _paint1
-                    )
-
-
-                }
-                0 -> {
-                    val middleX = child.left + child.width / 2 + _itemViewLeftinterval / 2
-                    c.drawLine(
-                        middleX.toFloat() + icon.width / 2,
-                        child.bottom.toFloat() + _itemViewtopinterval,
-                        middleX.toFloat() + icon.width / 2 + 25,
-                        child.bottom.toFloat() + _itemViewtopinterval,
-                        _paint3
-                    )
-                    c.drawText(
-                        note.time,
-                        200F,
-                        _itemViewtopinterval / 2 + child.bottom.toFloat() + _itemViewtopinterval / 2 + _itemViewtopinterval,
-                        _paint2
-                    )
-                    if (i == 0 && index == 0) {
-                        //特殊处理第一个item，这里包含图标和文字
-                        c.drawBitmap(
-                            BitmapFactory.decodeResource(
-                                _context.resources,
-                                note.getBitmapFromNote(firstNote.noteKind)
-                            ),
-                            middleX.toFloat() - icon.width / 2,
-                            child.top.toFloat() - _itemViewtopinterval,
-                            _paint1
-                        )
+        if (_notes.size > 0) {
+            val firstNote: Note = _notes[0]
+            //遍历子view
+            val childCount = parent.childCount
+            for (i in 0 until childCount - 1) {
+                //对应的子view
+                val child = parent.getChildAt(i)
+                //对应在adapter的下标
+                val index = parent.getChildAdapterPosition(child)
+                //对应在数据中的内容
+                val note = _notes[index + 1]
+                //判断在adapter中的序号奇偶
+                when (index % 2) {
+                    //交叉的方式排列
+                    1 -> {
+                        //X中心坐标
+                        val middleX = child.left + child.width / 2 - _itemViewLeftinterval / 2
+                        //处理的是adapter中的第一个item
+                        if (index == 0)
+                        //第一个item在中心画图标，X中心坐标-图标一半,特殊处理
+                        {
+                            c.drawBitmap(
+                                BitmapFactory.decodeResource(
+                                    _context.resources,
+                                    note.getBitmapFromNote(firstNote!!.getKind())
+                                ),
+                                middleX.toFloat() - icon.width / 2,
+                                child.top.toFloat() - _itemViewtopinterval,
+                                _paint1
+                            )
+                        }
                         c.drawLine(
                             middleX.toFloat() - icon.width / 2,
-                            child.top.toFloat(),
+                            child.bottom.toFloat() + _itemViewtopinterval,
                             middleX.toFloat() - icon.width / 2 - 25,
-                            child.top.toFloat(),
+                            child.bottom.toFloat() + _itemViewtopinterval,
                             _paint3
                         )
                         c.drawText(
-                            firstNote.time,
+                            note.getTime(),
                             (middleX).toFloat() + icon.width / 2 + 25,
-                            child.top.toFloat() + _itemViewtopinterval / 2,
+                            child.bottom.toFloat() + _itemViewtopinterval / 2 + _itemViewtopinterval,
                             _paint2
                         )
+
+
+                        //画上链接线
+                        c.drawLine(
+                            middleX.toFloat(),
+                            child.top.toFloat() + _itemViewtopinterval,
+                            middleX.toFloat(),
+                            child.bottom.toFloat(),
+                            _paint1
+                        )
+                        //排除最后一次，画图
+                        if (i != childCount - 1) c.drawBitmap(
+                            BitmapFactory.decodeResource(_context.resources, note.getBitmapFromNote(note.getKind())),
+                            middleX.toFloat() - icon.width / 2,
+                            child.bottom.toFloat(),
+                            _paint1
+                        )
+
+
                     }
-                    c.drawLine(
-                        middleX.toFloat(),
-                        child.top.toFloat() + _itemViewtopinterval,
-                        middleX.toFloat(),
-                        child.bottom.toFloat(),
-                        _paint1
-                    )
-                    if (i != childCount - 1) c.drawBitmap(
-                        BitmapFactory.decodeResource(_context.resources, note.getBitmapFromNote(note.noteKind)),
-                        middleX.toFloat() - icon.width / 2,
-                        child.bottom.toFloat(),
-                        _paint1
-                    )
+                    0 -> {
+                        val middleX = child.left + child.width / 2 + _itemViewLeftinterval / 2
+                        c.drawLine(
+                            middleX.toFloat() + icon.width / 2,
+                            child.bottom.toFloat() + _itemViewtopinterval,
+                            middleX.toFloat() + icon.width / 2 + 25,
+                            child.bottom.toFloat() + _itemViewtopinterval,
+                            _paint3
+                        )
+                        c.drawText(
+                            note.getTime(),
+                            200F,
+                            _itemViewtopinterval / 2 + child.bottom.toFloat() + _itemViewtopinterval / 2 + _itemViewtopinterval,
+                            _paint2
+                        )
+                        if (i == 0 && index == 0) {
+                            //特殊处理第一个item，这里包含图标和文字
+                            c.drawBitmap(
+                                BitmapFactory.decodeResource(
+                                    _context.resources,
+                                    note.getBitmapFromNote(firstNote!!.getKind())
+                                ),
+                                middleX.toFloat() - icon.width / 2,
+                                child.top.toFloat() - _itemViewtopinterval,
+                                _paint1
+                            )
+                            c.drawLine(
+                                middleX.toFloat() - icon.width / 2,
+                                child.top.toFloat(),
+                                middleX.toFloat() - icon.width / 2 - 25,
+                                child.top.toFloat(),
+                                _paint3
+                            )
+                            c.drawText(
+                                firstNote.getTime(),
+                                (middleX).toFloat() + icon.width / 2 + 25,
+                                child.top.toFloat() + _itemViewtopinterval / 2,
+                                _paint2
+                            )
+                        }
+                        c.drawLine(
+                            middleX.toFloat(),
+                            child.top.toFloat() + _itemViewtopinterval,
+                            middleX.toFloat(),
+                            child.bottom.toFloat(),
+                            _paint1
+                        )
+                        if (i != childCount - 1) c.drawBitmap(
+                            BitmapFactory.decodeResource(_context.resources, note.getBitmapFromNote(note.getKind())),
+                            middleX.toFloat() - icon.width / 2,
+                            child.bottom.toFloat(),
+                            _paint1
+                        )
+                    }
                 }
             }
         }
-
     }
 
     private fun sortByTime() {
         //这部分需要先转化成时间戳
-        _notes.sortBy { it.time }
+        _notes.sortBy { it.getTitle() }
     }
 }
